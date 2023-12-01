@@ -1,0 +1,33 @@
+<form novalidate #form="ngForm" (submit)="onSumbit(form)" autocomplete="off">
+    <input type="hidden" name="payId" [value]="service.formData.payId" />
+    <div class="form-group">
+        <label>Card Owner name</label>
+        <input class="form-control form-control-lg" placeholder="Full Name" name="cardOwner" #cardOwnerName="ngModel"
+            [(ngModel)]="service.formData.cardOwner" required
+            [class.invalid]="cardOwnerName.invalid && cardOwnerName.touched">
+    </div>
+    <div class="form-group">
+        <label>Card Number</label>
+        <input class="form-control form-control-lg" placeholder="16 Digtal Card Number" name="cardNumber"
+            #cardNumberName="ngModel" [(ngModel)]="service.formData.cardNumber" required maxlength="16" minlength="16"
+            [class.invalid]="cardNumberName.invalid && cardNumberName.touched">
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <label>Security Code</label>
+            <input type="password" class="form-control form-control-lg" placeholder="Secutity Code" name="securityCode"
+                #securityCodeName="ngModel" [(ngModel)]="service.formData.securityCode" required maxlength="3"
+                minlength="3" [class.invalid]="securityCodeName.invalid && securityCodeName.touched">
+        </div>
+        <div class="form-group col-md-12">
+            <label>Expir Date</label>
+            <input class="form-control form-control-lg" placeholder="MM/YY" name="expirPay" #expirPayName="ngModel"
+                [(ngModel)]="service.formData.expirPay" required="5" minlength="5" maxlength="5"
+                [class.invalid]="expirPayName.invalid && expirPayName.touched">
+        </div>
+    </div>
+    <div class="form-group">
+        <button class="btn btn-outline-info btn-lg" type="submit" [disabled]="form.invalid">Submit</button>
+    </div>
+</form>
